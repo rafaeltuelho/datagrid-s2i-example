@@ -172,9 +172,6 @@
         </subsystem>
         <!-- ##INFINISPAN_ENDPOINT## -->
 
-        <!-- @@ START S2I CUSTOM CONFIG @@ -->
-        <!-- @@ END   S2I CUSTOM CONFIG @@ -->
-
         <subsystem 
             xmlns="urn:infinispan:server:core:8.4" default-cache-container="clustered">
             <!-- placeholder changed to not be haldled by the image's launch scripts -->
