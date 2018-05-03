@@ -191,7 +191,9 @@
             <cache-container name="clustered" default-cache="demo">
                 <transport channel="cluster" />
                 <global-state/>
-                <distributed-cache name="demo" mode="SYNC">
+
+                <!-- cache configurations -->
+                <distributed-cache-configuration name="base_dist_jdbc_cache_config" mode="SYNC">
                     <eviction strategy="LRU" size="10000"/>
                     <expiration lifespan="-1" max-idle="-1" />
                     <write-behind modification-queue-size="1024" thread-pool-size="1"/>
@@ -205,8 +207,10 @@
                             <data-column name="datum" type="BYTEA"/>
                         </string-keyed-table>
                     </string-keyed-jdbc-store>
-                </distributed-cache>
-                <distributed-cache name="default_memcached" mode="SYNC"></distributed-cache>
+                </distributed-cache-configuration>
+
+                <distributed-cache-configuration name="demo" configuration="base_dist_jdbc_cache_config"/>
+                <distributed-cache name="default_memcached" mode="SYNC"/>
             </cache-container>            
             <!-- @@ END   S2I CUSTOM CONFIG @@ -->
 
