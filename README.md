@@ -59,6 +59,8 @@ See the config snippet I defined on the [`configuration/clustered-openshift.xml`
 
 During the deployment the **s2i scripts** will copy your `configuration/clustered-openshift.xml` and than the launch scripts will process the original ``## PLACEHOLDERS ##`` according to the parameters you informed on template. 
 
+> NOTE: if you do not want the lauch script process a specifc part of the `clustered-openshift.xml` file just modify the `## PLACEHOLDER ##` name. Like this `<!-- ##_IGNORE_INFINISPAN_CORE## -->`
+
 See the steps below...
 
 ## Steps to deploy this sample Data Grid app
