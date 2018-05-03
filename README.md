@@ -36,7 +36,6 @@ See the config snippet I defined on the [`configuration/clustered-openshift.xml`
                 <distributed-cache-configuration name="base_dist_jdbc_cache_config" mode="SYNC">
                     <eviction strategy="LRU" size="10000"/>
                     <expiration lifespan="-1" max-idle="-1" />
-                    <write-behind modification-queue-size="1024" thread-pool-size="1"/>
                     <string-keyed-jdbc-store 
                         datasource="java:jboss/datasources/postgresql" 
                         passivation="false"
@@ -44,8 +43,11 @@ See the config snippet I defined on the [`configuration/clustered-openshift.xml`
                         preload="true" 
                         shared="false">
                         <string-keyed-table prefix="JDG">
+                            <id-column name="id" type="VARCHAR"/>
                             <data-column name="datum" type="BYTEA"/>
+                            <timestamp-column name="version" type="BIGINT"/>                            
                         </string-keyed-table>
+                       <write-behind modification-queue-size="1024" thread-pool-size="1"/>
                     </string-keyed-jdbc-store>
                 </distributed-cache-configuration>
 
@@ -88,12 +90,14 @@ oc policy add-role-to-user view system:serviceaccount:$(oc project -q):default -
 ```
 
 5. Create the app using Openshift web console (from catalog) or using `oc` CLI.
+
 ```bash
-oc new-app custom-dg-cluster --name=custom-dg-cluster \
--e APPLICATION_NAME=custom-dg-cluster \
--e USERNAME=admin \
--e PASSWORD='Data@grid1' \
--e JAVA_OPTS_APPEND='-Dcustom_opts_mark=custom-dg-cluster -Xms512m -Xmx512m' \
+oc new-app --template='datagrid71-postgresql-persistent-s2i' \
+--param=APPLICATION_NAME='mycustom-dg-cluster' \
+--param=SOURCE_REPOSITORY_URL='https://github.com/rafaeltuelho/datagrid-s2i-example' \
+--param=USERNAME='admin' \
+--param=PASSWORD='Data@grid1' \
+--param=JAVA_OPTS_APPEND='-Dcustom_opts_mark=custom-dg-cluster -Xms512m -Xmx512m'
 ```
 
 > the template defines default values for the other supported parameters. If you need to change any of them see the template definition to get the name of the parameter.

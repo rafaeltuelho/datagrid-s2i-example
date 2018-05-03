@@ -193,7 +193,6 @@
                 <distributed-cache-configuration name="base_dist_jdbc_cache_config" mode="SYNC">
                     <eviction strategy="LRU" size="10000"/>
                     <expiration lifespan="-1" max-idle="-1" />
-                    <write-behind modification-queue-size="1024" thread-pool-size="1"/>
                     <string-keyed-jdbc-store 
                         datasource="java:jboss/datasources/postgresql" 
                         passivation="false"
@@ -201,8 +200,11 @@
                         preload="true" 
                         shared="false">
                         <string-keyed-table prefix="JDG">
+                            <id-column name="id" type="VARCHAR"/>
                             <data-column name="datum" type="BYTEA"/>
+                            <timestamp-column name="version" type="BIGINT"/>                            
                         </string-keyed-table>
+                       <write-behind modification-queue-size="1024" thread-pool-size="1"/>
                     </string-keyed-jdbc-store>
                 </distributed-cache-configuration>
 
