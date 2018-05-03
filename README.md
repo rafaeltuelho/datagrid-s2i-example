@@ -51,7 +51,7 @@ See the config snippet I defined on the [`configuration/clustered-openshift.xml`
                     </string-keyed-jdbc-store>
                 </distributed-cache-configuration>
 
-                <distributed-cache-configuration name="demo" configuration="base_dist_jdbc_cache_config"/>
+                <distributed-cache name="demo" configuration="base_dist_jdbc_cache_config"/>
                 <distributed-cache name="default_memcached" mode="SYNC"/>
             </cache-container>            
             <!-- @@ END   S2I CUSTOM CONFIG @@ -->
