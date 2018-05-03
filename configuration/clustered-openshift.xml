@@ -192,14 +192,15 @@
                 <transport channel="cluster" />
                 <global-state/>
                 <distributed-cache name="demo" mode="SYNC">
-                    <eviction strategy="LRU" size="10"/>
+                    <eviction strategy="LRU" size="10000"/>
                     <expiration lifespan="-1" max-idle="-1" />
+                    <write-behind modification-queue-size="1024" thread-pool-size="1"/>
                     <string-keyed-jdbc-store 
                         datasource="java:jboss/datasources/postgresql" 
                         passivation="false"
                         purge="false" 
                         preload="true" 
-                        shared="true">
+                        shared="false">
                         <string-keyed-table prefix="JDG">
                             <data-column name="datum" type="BYTEA"/>
                         </string-keyed-table>
