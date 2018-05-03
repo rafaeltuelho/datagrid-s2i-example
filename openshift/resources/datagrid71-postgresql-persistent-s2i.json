@@ -32,14 +32,14 @@
             "displayName": "Git Repository URL",
             "description": "Git source URI for application",
             "name": "SOURCE_REPOSITORY_URL",
-            "value": "https://github.com/rafaeltuelho/datagrig-s2i-example",
+            "value": "https://github.com/rafaeltuelho/datagrid-s2i-example",
             "required": true
         },
         {
             "displayName": "Git Reference",
             "description": "Git branch/tag reference",
             "name": "SOURCE_REPOSITORY_REF",
-            "value": "",
+            "value": "master",
             "required": false
         },
         {
@@ -139,14 +139,14 @@
             "displayName": "Server Certificate Name",
             "description": "The name associated with the server certificate",
             "name": "HTTPS_NAME",
-            "value": "",
+            "value": "jboss",
             "required": false
         },
         {
             "displayName": "Server Keystore Password",
             "description": "The password for the keystore and certificate",
             "name": "HTTPS_PASSWORD",
-            "value": "",
+            "value": "mykeystorepass",
             "required": false
         },
         {
@@ -167,8 +167,7 @@
             "displayName": "Database Username",
             "description": "Database user name",
             "name": "DB_USERNAME",
-            "from": "user[a-zA-Z0-9]{3}",
-            "generate": "expression",
+            "value": "JDG",
             "required": true
         },
         {
@@ -290,14 +289,14 @@
             "displayName": "JGroups Certificate Name",
             "description": "The name associated with the server certificate",
             "name": "JGROUPS_ENCRYPT_NAME",
-            "value": "",
+            "value": "secret-key",
             "required": false
         },
         {
             "displayName": "JGroups Keystore Password",
             "description": "The password for the keystore and certificate",
             "name": "JGROUPS_ENCRYPT_PASSWORD",
-            "value": "",
+            "value": "password",
             "required": false
         },
         {
@@ -319,6 +318,24 @@
             "description": "Container memory limit",
             "name": "MEMORY_LIMIT",
             "value": "1Gi",
+            "required": false
+        },
+        {
+            "description": "Additional/custom startup JVM properties/options (eg. -Xms1024m -Xmx1024m)",
+            "name": "JAVA_OPTS_APPEND",
+            "value": "-Dcustom_opts_mark=CUSTOM_JVM_OPTS ",
+            "required": false
+        },
+        {
+            "description": "Openshift Kube Ping Labels used by JGroups. Uses ${APPLICATION_NAME} by default",
+            "name": "OPENSHIFT_KUBE_PING_NAMESPACE",
+            "value": "${APPLICATION_NAME}",
+            "required": false
+        },
+        {
+            "description": "Openshift Kube Ping Labels used by JGroups. Uses ${APPLICATION_NAME} by default",
+            "name": "OPENSHIFT_KUBE_PING_LABELS",
+            "value": "${APPLICATION_NAME}",
             "required": false
         }
     ],
@@ -549,7 +566,7 @@
                         "from": {
                             "kind": "ImageStreamTag",
                             "namespace": "${IMAGE_STREAM_NAMESPACE}",
-                            "name": "jboss-datagrid71-openshif:1.3"
+                            "name": "jboss-datagrid71-openshift:1.3"
                         }
                     }
                 },
