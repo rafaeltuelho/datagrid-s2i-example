@@ -886,6 +886,18 @@
                                     {
                                         "name": "JGROUPS_CLUSTER_PASSWORD",
                                         "value": "${JGROUPS_CLUSTER_PASSWORD}"
+                                    },
+                                    {
+                                        "name": "JAVA_OPTS_APPEND",
+                                        "value": "${JAVA_OPTS_APPEND}"
+                                    },
+                                    {
+                                        "name": "OPENSHIFT_KUBE_PING_NAMESPACE",
+                                        "value": "${OPENSHIFT_KUBE_PING_NAMESPACE}"
+                                    },
+                                    {
+                                        "name": "OPENSHIFT_KUBE_PING_LABELS",
+                                        "value": "${OPENSHIFT_KUBE_PING_LABELS}"
                                     }
                                 ]
                             }
