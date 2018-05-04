@@ -174,7 +174,7 @@
 
         <subsystem 
             xmlns="urn:infinispan:server:core:8.4" default-cache-container="clustered">
-            <!-- placeholder changed to not be haldled by the image's launch scripts -->
+            <!-- placeholder changed to not be touch by the image's launch scripts -->
             <!-- ##_IGNORE_INFINISPAN_CORE## -->
 
             <!-- @@ START S2I CUSTOM CONFIG @@ -->
