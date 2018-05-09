@@ -191,6 +191,7 @@
 
                 <!-- cache configurations -->
                 <distributed-cache-configuration name="base_dist_jdbc_cache_config" mode="SYNC">
+                    <compatibility enabled="true"/>
                     <eviction strategy="LRU" size="10000"/>
                     <expiration lifespan="-1" max-idle="-1" />
                     <string-keyed-jdbc-store 
